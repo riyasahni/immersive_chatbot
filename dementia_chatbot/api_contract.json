@@ -1,0 +1,111 @@
+{
+  "endpoints": [
+    {
+      "path": "/api/sessions",
+      "method": "POST",
+      "request_schema": {},
+      "response_schema": {
+        "sessionId": "string",
+        "stage": "number",
+        "startTime": "string",
+        "message": "string"
+      },
+      "description": "Initialize a new chatbot session and get the opening message"
+    },
+    {
+      "path": "/api/sessions/:sessionId/messages",
+      "method": "POST",
+      "request_schema": {
+        "message": "string"
+      },
+      "response_schema": {
+        "response": "string",
+        "stage": "number",
+        "elapsedTime": "number",
+        "isComplete": "boolean"
+      },
+      "description": "Send user message and receive chatbot response based on current stage"
+    },
+    {
+      "path": "/api/sessions/:sessionId/status",
+      "method": "GET",
+      "request_schema": {},
+      "response_schema": {
+        "sessionId": "string",
+        "stage": "number",
+        "elapsedTime": "number",
+        "isComplete": "boolean",
+        "stageDescription": "string"
+      },
+      "description": "Get current session status and stage information"
+    },
+    {
+      "path": "/api/sessions/:sessionId/history",
+      "method": "GET",
+      "request_schema": {},
+      "response_schema": {
+        "messages": [
+          {
+            "sender": "string",
+            "message": "string",
+            "timestamp": "string",
+            "stage": "number"
+          }
+        ]
+      },
+      "description": "Retrieve complete conversation history for the session"
+    },
+    {
+      "path": "/api/sessions/:sessionId",
+      "method": "DELETE",
+      "request_schema": {},
+      "response_schema": {
+        "success": "boolean",
+        "message": "string"
+      },
+      "description": "End and cleanup a session"
+    }
+  ],
+  "models": {
+    "Session": {
+      "sessionId": "string",
+      "stage": "number",
+      "startTime": "string",
+      "isComplete": "boolean",
+      "messages": [
+        "Message"
+      ]
+    },
+    "Message": {
+      "sender": "string",
+      "message": "string",
+      "timestamp": "string",
+      "stage": "number"
+    },
+    "SessionStatus": {
+      "sessionId": "string",
+      "stage": "number",
+      "elapsedTime": "number",
+      "isComplete": "boolean",
+      "stageDescription": "string"
+    },
+    "ChatResponse": {
+      "response": "string",
+      "stage": "number",
+      "elapsedTime": "number",
+      "isComplete": "boolean"
+    },
+    "StageConfig": {
+      "stageNumber": "number",
+      "duration": "number",
+      "description": "string",
+      "tone": "string",
+      "systemPrompt": "string"
+    },
+    "ErrorResponse": {
+      "error": "string",
+      "message": "string",
+      "statusCode": "number"
+    }
+  }
+}

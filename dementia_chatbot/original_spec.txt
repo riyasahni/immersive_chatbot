@@ -1,0 +1,48 @@
+
+This chatbot experience simulates a situation where the user is a dementia patient and the chatbot is their partner. The experience is broken into 4 time-based stages over 4 minutes.
+
+STAGE 1 (0-1 minute): Kitchen Scene - Gentle Questioning
+- Setting: Dinner time in the kitchen
+- Chatbot opens with: "We're having dinner together. This is your favorite meal."
+- Questions: "What's your name? Do you remember?", "What's my name?", "What are we eating right now?"
+- Tone: Patient, gentle, hopeful
+
+STAGE 2 (1-2 minutes): Emotional Strain - Sadness
+- Continue conversation with emotional cues
+- Side comments: "I miss when you used to remember our conversations"
+- Physical descriptions in italics: *looks away with tears forming*
+- More personal questions about wedding, recent events
+- Tone: Sad, nostalgic, longing
+
+STAGE 3 (2-3 minutes): Frustration Building
+- Chatbot becomes visibly frustrated
+- Questions about life milestones: wedding date, honeymoon location, children's names
+- ALL user responses treated as incorrect
+- Chatbot provides "correct" answers with frustration
+- Physical cues: *clenches fists* *voice rising*
+- Tone: Frustrated, exasperated, hurt
+
+STAGE 4 (3-4 minutes): Breaking Point
+- Chatbot announces: "I can't do this anymore. I need to make a call."
+- Final message: "I'm leaving the room now."
+- Italicized narration of overheard phone call about nursing home placement
+- Experience ends with emotional impact
+
+TECHNICAL REQUIREMENTS:
+- Real-time chat interface with timer
+- Stage transitions based on elapsed time (every 60 seconds)
+- OpenAI GPT-4o for dynamic, contextual responses
+- Clean Kindle-inspired UI: Georgia serif font, warm off-white background (#f4f1ea), minimal design
+- Conversation history tracking
+- Italicized physical descriptions and narration
+- Stage-aware prompts that guide chatbot behavior
+
+UI DESIGN:
+- Kindle-like reading experience
+- Max-width 650px, centered
+- Font: Georgia, 18px, line-height 1.6
+- Background: #f4f1ea (warm off-white)
+- Text: #1a1a1a (soft black)
+- Minimal header with stage indicator and timer
+- Clean input field at bottom
+- No avatars, just "Partner:" and "You:" labels
