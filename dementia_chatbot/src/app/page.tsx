@@ -47,19 +47,44 @@ export default function Home() {
     setSessionStarted(true)
     const openingMessage: Message = {
       role: 'partner',
-      content: "We're having dinner together. This is your favorite meal.",
+      content: "Happy Anniversary, darling! I can't believe it's been 40 years. *He gestures to a small wrapped gift on the table.*",
       timestamp: 0
     }
     setMessages([openingMessage])
+  }
+
+  // Helper to simulate dysphasia/confusion in text
+  const glitchText = (text: string, stage: number) => {
+    if (stage < 3) return text;
+    
+    const words = text.split(' ');
+    
+    if (stage === 3) {
+      // Stage 3: Drop random words, replace with pauses
+      return words.map(w => Math.random() > 0.8 ? '...' : w).join(' ');
+    }
+    
+    if (stage === 4) {
+      // Stage 4: Severe fragmentation
+      return words.map(w => {
+        if (Math.random() > 0.6) return '...';
+        return w;
+      }).join(' ');
+    }
+    
+    return text;
   }
 
   // Send message to chatbot
   const sendMessage = async () => {
     if (!inputText.trim() || isLoading) return
 
+    // Apply glitch effect based on stage - simulates dysphasia
+    const processedText = glitchText(inputText, currentStage);
+
     const userMessage: Message = {
       role: 'user',
-      content: inputText,
+      content: processedText,
       timestamp: elapsedTime
     }
 
@@ -69,7 +94,7 @@ export default function Home() {
 
     try {
       const response = await axios.post('/api/chat', {
-        message: inputText,
+        message: processedText, // Send the glitched text to the AI too
         elapsedTime: elapsedTime,
         sessionId: sessionId
       })
@@ -112,10 +137,10 @@ export default function Home() {
   // Get stage name
   const getStageName = (stage: number) => {
     const stages = [
-      'Kitchen Scene - Gentle Questioning',
-      'Emotional Strain - Sadness',
-      'Building Frustration',
-      'Breaking Point'
+      'The Celebration - 40th Anniversary',
+      'The Confusion - Gaslighting',
+      'The Frustration - Unwinnable Game',
+      'The End - Breaking Point'
     ]
     return stages[stage - 1] || 'Unknown'
   }
